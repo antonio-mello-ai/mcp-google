@@ -16,12 +16,12 @@ os.environ["GOOGLE_ACCOUNTS_JSON"] = json.dumps(
     [{"email": "test@gmail.com", "refresh_token": "fake-refresh-token"}]
 )
 
-from mcp_google.config import AccountConfig, GoogleConfig
-
+from mcp_google.config import GoogleConfig
 
 # ---------------------------------------------------------------------------
 # Config tests
 # ---------------------------------------------------------------------------
+
 
 class TestGoogleConfig:
     def test_from_env(self):
@@ -65,6 +65,7 @@ class TestGoogleConfig:
 # Helper to build mock Google services
 # ---------------------------------------------------------------------------
 
+
 def _mock_gmail_service():
     """Return a mock Gmail service with chainable methods."""
     service = MagicMock()
@@ -81,6 +82,7 @@ def _mock_calendar_service():
 # Gmail tool tests
 # ---------------------------------------------------------------------------
 
+
 class TestGmailListUnread:
     @patch("mcp_google.tools.gmail._gmail_service")
     def test_returns_unread_messages(self, mock_svc_fn):
@@ -93,7 +95,7 @@ class TestGmailListUnread:
         }
 
         # Mock get response for each message
-        def get_side_effect(userId, id, format):
+        def get_side_effect(userId, id, format):  # noqa: N803 - matches Gmail API kwargs
             mock = MagicMock()
             mock.execute.return_value = {
                 "id": id,
@@ -188,6 +190,7 @@ class TestGmailSend:
 # ---------------------------------------------------------------------------
 # Calendar tool tests
 # ---------------------------------------------------------------------------
+
 
 class TestCalendarToday:
     @patch("mcp_google.tools.calendar._calendar_service")
