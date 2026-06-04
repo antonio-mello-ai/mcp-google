@@ -5,7 +5,11 @@ MCP server for Google APIs — Gmail and Calendar tools for LLM agents.
 ## Install
 
 ```bash
-pip install -e ".[dev]"
+# Run directly with uvx (no install needed)
+uvx mcp-google
+
+# Or install with pip
+pip install mcp-google
 ```
 
 ## Environment Variables
