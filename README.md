@@ -105,3 +105,7 @@ python -m mcp_google.server
   }
 }
 ```
+
+## License
+
+MIT
