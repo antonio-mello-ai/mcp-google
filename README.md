@@ -67,21 +67,14 @@ The first account in the array is used as default when no `account` parameter is
 
 ### Obtaining Refresh Tokens
 
-Use the [Google OAuth Playground](https://developers.google.com/oauthplayground/) or run a local OAuth flow:
+Use the [Google OAuth Playground](https://developers.google.com/oauthplayground/)
+or a local OAuth flow created for a **Desktop app** client. Refresh tokens are
+credentials: keep them out of repository files, issues, terminal transcripts,
+shell history and shared logs. Store the resulting configuration in a local
+secret source and inject it through the environment at runtime.
 
-```bash
-# Quick method via oauth2l
-pip install google-auth-oauthlib
-python -c "
-from google_auth_oauthlib.flow import InstalledAppFlow
-flow = InstalledAppFlow.from_client_config(
-    {'installed': {'client_id': 'YOUR_CLIENT_ID', 'client_secret': 'YOUR_SECRET', 'auth_uri': 'https://accounts.google.com/o/oauth2/auth', 'token_uri': 'https://oauth2.googleapis.com/token'}},
-    scopes=['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.com/auth/calendar.readonly', 'https://www.googleapis.com/auth/calendar.events']
-)
-creds = flow.run_local_server(port=0)
-print(f'Refresh token: {creds.refresh_token}')
-"
-```
+A first-class setup helper that avoids unsafe output by default is tracked in
+[Issue #5](https://github.com/antonio-mello-ai/mcp-google/issues/5).
 
 ## Running
 
@@ -113,3 +106,14 @@ python -m mcp_google.server
 ## License
 
 MIT
+
+## Documentation and roadmap
+
+- [Current product flows](docs/fluxos-negocio.md)
+- [Architecture](docs/arquitetura.md)
+- [Operations](docs/operacao.md)
+- [Documentation index](docs/index.md)
+- [Open roadmap items](https://github.com/antonio-mello-ai/mcp-google/issues)
+
+Priorities live in GitHub Issues and Projects. Delivery history lives in closed
+Issues, pull requests and GitHub Releases.
